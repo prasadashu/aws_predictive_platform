@@ -1,4 +1,4 @@
-const { ListObjectsV2Command, ListBucketsCommand, GetObjectCommand, S3Client } = require("@aws-sdk/client-s3");
+const { ListObjectsV2Command, ListBucketsCommand, GetObjectCommand, PutObjectCommand, S3Client } = require("@aws-sdk/client-s3");
 const fs = require("fs");
 
 // Define S3 client configuration
@@ -60,6 +60,34 @@ const getObject = async(bucketName, keyName) => {
     }
 }
 
+// Define function to put file to S3 bucket
+const putObject = async (bucketName, keyName, filePath) => {
+    // Create a readable stream from the local file
+    const fileStream = fs.createReadStream(filePath);
+  
+    // Define input parameters
+    const input = {
+      Bucket: bucketName,
+      Key: keyName,
+      Body: fileStream,
+    };
+  
+    // Define putObject command to send to S3
+    const command = new PutObjectCommand(input);
+  
+    // Execute the command
+    try{
+      // Get response of command sent
+      const response = await client.send(command);
+      // Print response received from S3
+      console.log(response);
+    } 
+    catch(error){
+      // Handle error while putting objects to S3
+      console.error("Error while putting object: ", error);
+    }
+};
+
 // Call functions based on command line arguments
 if(process.argv[2] === "--listBuckets"){
     listBuckets();
@@ -69,4 +97,7 @@ else if(process.argv[2] === "--listObjects"){
 }
 else if(process.argv[2] == "--getObject"){
     getObject(process.argv[3], process.argv[4]);
+}
+else if(process.argv[2] === "--putObject"){
+    putObject(process.argv[3], process.argv[4], process.argv[5]);
 }
