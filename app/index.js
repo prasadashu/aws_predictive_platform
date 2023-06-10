@@ -1,4 +1,5 @@
 const { ListObjectsV2Command, ListBucketsCommand, GetObjectCommand, S3Client } = require("@aws-sdk/client-s3");
+const fs = require("fs");
 
 // Define S3 client configuration
 const client = new S3Client({
@@ -42,8 +43,17 @@ const getObject = async(bucketName, keyName) => {
     };
     const command = new GetObjectCommand(input);
     try{
+        // Get response from S3 Bucket
         const response = await client.send(command);
-        console.log(response);
+        
+        // Create a file stream to download S3 object
+        const fileStream = fs.createWriteStream("../archive/downloaded_file.csv.gz");
+        // Dump response data to file stream
+        response.Body.pipe(fileStream);
+        // Print file downloaded successfully
+        fileStream.on("finish", () => {
+            console.log("Object downloaded successfully");
+        });
     }
     catch(error){
         console.error("Error while getting object: ", error);
