@@ -25,6 +25,14 @@ bash dependency.sh
 docker-compose up -d
 ```
 
+- Change directory to `app` to install `npm` dependencies.
+```shell
+cd app
+```
+```shell
+npm ci
+```
+
 - Build JavaScripts from TypeScript code
 ```shell
 tsc app/index.ts
