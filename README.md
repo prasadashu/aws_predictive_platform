@@ -6,7 +6,7 @@ A TypeScript repository to explore localstack
 ### Clone this repository
 - Clone the repsoitory
 ```shell
-git clone https://github.com/prasadashu/explore_localstack.git
+git clone -b typescript https://github.com/prasadashu/explore_localstack.git
 ```
 
 - Change directory to the cloned directory
