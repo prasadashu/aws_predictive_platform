@@ -12,6 +12,7 @@ export class AWSUtility{
         // Define S3 client configuration
         this.client = new S3Client({
             endpoint: "http://0.0.0.0:4566",
+            region: "us-east-1",
             credentials: {
                 accessKeyId: awsAccessKeyId,
                 secretAccessKey: awsSecretAccessKey
