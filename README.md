@@ -33,14 +33,16 @@ cd app
 npm ci
 ```
 
+### Build and run Node.JS code
+
 - Build JavaScripts from TypeScript code
 ```shell
-tsc app/index.ts
+tsc index.ts
 ```
 
 - Run `index.js`
 ```shell
-node app/index.js
+node index.js
 ```
 
 ## Refrences
