@@ -17,7 +17,7 @@ cd explore_localstack
 ### Checking dependencies
 - Run the below shell script to validate dependencies.
 ```shell
-shell dependency.sh
+bash dependency.sh
 ```
 
 - Run `Docker Compose` in detached state to spin up `localstack`.
