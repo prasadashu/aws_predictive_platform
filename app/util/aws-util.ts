@@ -1,4 +1,4 @@
-import { S3Client, ListBucketsCommand } from "@aws-sdk/client-s3";
+import { S3Client, ListBucketsCommand, ListObjectsV2Command } from "@aws-sdk/client-s3";
 
 /**
  * AWS Utility class to query S3
@@ -37,6 +37,29 @@ export class AWSUtility{
         } 
         catch (error) {
             // Print error while getting response
+            console.error("Error: ", error);
+        }
+    };
+
+    // Define async function to list S3 bucket objects
+    async listObjects(s3BucketName: string): Promise<void> {
+        // Declare input for command to be sent to S3 Server
+        const input = {
+            Bucket: s3BucketName
+        };
+
+        // Declare command to be sent to S3 Server
+        const command = new ListObjectsV2Command(input);
+
+        // Execute the command
+        try{
+            // Get response from S3 Server
+            const response = await this.client.send(command);
+            // Print the response received
+            console.log(response);
+        }
+        catch(error){
+            // Print the error while getting response
             console.error("Error: ", error);
         }
     };
