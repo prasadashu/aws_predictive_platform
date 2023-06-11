@@ -27,7 +27,7 @@ docker-compose up -d
 
 - Build JavaScripts from TypeScript code
 ```shell
-tsc app/
+tsc app/index.ts
 ```
 
 - Run `index.js`
