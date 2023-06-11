@@ -3,7 +3,7 @@ A TypeScript repository to explore localstack
 
 ## Steps to run source code
 
-### Clone this repository
+### 1. Clone this repository
 - Clone the repsoitory
 ```shell
 git clone -b typescript https://github.com/prasadashu/explore_localstack.git
@@ -14,7 +14,7 @@ git clone -b typescript https://github.com/prasadashu/explore_localstack.git
 cd explore_localstack
 ```
 
-### Checking dependencies
+### 2. Checking dependencies
 - Run the below shell script to validate dependencies.
 ```shell
 bash dependency.sh
@@ -33,7 +33,7 @@ cd app
 npm ci
 ```
 
-### Build and run Node.JS code
+### 3. Build and run Node.JS code
 
 - Build JavaScripts from TypeScript code
 ```shell
