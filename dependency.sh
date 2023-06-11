@@ -10,7 +10,7 @@ checkAndInstallNodeJS(){
         # Update apt package repository links
         curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
         # Install Node.JS
-        sudo apt install nodejs
+        sudo apt install -y nodejs
 
         # Verify if Node.JS got installed
         if ! node --version &> /dev/null; then
@@ -18,6 +18,10 @@ checkAndInstallNodeJS(){
         else
             echo "Node.JS installed";
             echo "Node.JS Version: $(node --version)";
+        fi
+    else
+        echo "Node.JS Version $(node --version)";
+    fi
 }
 
 # Define function to check and install TypeScript
@@ -27,15 +31,19 @@ checkAndInstallTypeScript(){
         echo "TypeScript is not installed";
         echo "Installing TypeScript...";
 
-    # Install TypeScript
-    apt install node-typescript;
+        # Install TypeScript
+        apt install -y node-typescript;
 
-    # Verify if TypeScript was installed
-    if ! tsc --version &> /dev/null; then
-        echo "Error while installing TypeScript";
+        # Verify if TypeScript was installed
+        if ! tsc --version &> /dev/null; then
+            echo "Error while installing TypeScript";
+        else
+            echo "TypeScript installed";
+            echo "TypeScript Version: $(tsc --version)";
+        fi
     else
-        echo "TypeScript installed";
-        echo "TypeScript Version: $(tsc --version)";
+        echo "TypeScript Version $(tsc --version)";
+    fi
 }
 
 # Define function to check and install AWS CLI
@@ -45,15 +53,19 @@ checkAndInstallAWSCli(){
         echo "AWS CLI is not installed";
         echo "Installing AWS CLI...";
 
-    # Install AWS CLI
-    apt install awscli
+        # Install AWS CLI
+        apt install -y awscli
 
-    # Verify if AWS CLI was installed
-    if ! aws --version &> /dev/null; then
-        echo "Error while installing AWS CLI";
+        # Verify if AWS CLI was installed
+        if ! aws --version &> /dev/null; then
+            echo "Error while installing AWS CLI";
+        else
+            echo "AWS CLI installed";
+            echo "AWS CLI Version: $(aws --version)";
+        fi
     else
-        echo "AWS CLI installed";
-        echo "AWS CLI Version: $(aws --version)";
+        echo "AWS CLI Version $(aws --version)";
+    fi
 }
 
 # Check Docker Version
@@ -63,10 +75,10 @@ echo "Docker Version: " $(docker --version);
 echo "Docker Compose Version: " $(docker-compose --version);
 
 # Check NodeJS version
-checkAndInstallNodeJS();
+checkAndInstallNodeJS
 
 # Check TypeScript version
-checkAndInstallTypeScript();
+checkAndInstallTypeScript
 
 # Check AWS CLI version
-checkAndInstallAWSCli();
+checkAndInstallAWSCli
