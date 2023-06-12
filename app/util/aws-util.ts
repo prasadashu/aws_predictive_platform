@@ -84,12 +84,13 @@ export class AWSUtility{
             
             // Create write stream to download S3 object
             const fileStream = fs.createWriteStream("../downloaded_file.txt");
-            // Dump response data to file stream
             
-             // Dump response data to file stream
-            if (response.Body instanceof Readable) {
+            // Check if Body of response is a readable type
+            if(response.Body instanceof Readable){
+                // Dump response data to file stream
                 response.Body.pipe(fileStream);
-            } else {
+            } 
+            else{
                 throw new Error("Response body is not a readable stream.");
             }
 
