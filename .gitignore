@@ -1,6 +1,10 @@
 # Sample files
 archive/*
 
+# JavaScript files
+app/*.js
+app/util/*.js
+
 # Logs
 logs
 *.log
