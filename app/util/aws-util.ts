@@ -22,7 +22,9 @@ export class AWSUtility{
         });
     }
 
-    // Define async function to list S3 buckets
+    /**
+     * Define async function to list S3 buckets
+     */
     async listBuckets(): Promise<void> {
         // Declare input for command to be sent to S3 Server
         const input = {};
@@ -43,7 +45,10 @@ export class AWSUtility{
         }
     };
 
-    // Define async function to list S3 bucket objects
+    /**
+     * Define async function to list S3 bucket objects
+     * @param s3BucketName S3 Bucket name
+     */
     async listObjects(s3BucketName: string): Promise<void> {
         // Declare input for command to be sent to S3 Server
         const input = {
@@ -66,7 +71,11 @@ export class AWSUtility{
         }
     };
 
-    // Define async function to download S3 Objects
+    /**
+     * Define async function to download S3 Objects
+     * @param s3BucketName S3 Bucket name
+     * @param s3ObjectName S3 Object name
+     */
     async getObject(s3BucketName: string, s3ObjectName: string): Promise<void> {
         // Declare input for command to be sent to S3 Server
         const input = {
@@ -104,7 +113,12 @@ export class AWSUtility{
         }
     };
 
-    // Define async function to upload file to S3
+    /**
+     * Define async function to upload file to S3
+     * @param s3BucketName S3 Bucket name
+     * @param s3ObjectName S3 Object name
+     * @param localFilePath Local file path
+     */
     async putObject(s3BucketName: string, s3ObjectName: string, localFilePath: string): Promise<void>{
         // Create a filestream from local filesystem to S3
         const fileStream = fs.createReadStream(localFilePath);
