@@ -9,3 +9,5 @@ awsUtility.listBuckets();
 awsUtility.listObjects(process.argv[2]);
 // Call the getObject method
 awsUtility.getObject(process.argv[2], process.argv[3]);
+// Call the putObject method
+awsUtility.putObject(process.argv[2], process.argv[3], process.argv[4]);

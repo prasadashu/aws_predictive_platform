@@ -1,4 +1,4 @@
-import { S3Client, ListBucketsCommand, ListObjectsV2Command, GetObjectCommand } from "@aws-sdk/client-s3";
+import { S3Client, ListBucketsCommand, ListObjectsV2Command, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import * as fs from "fs";
 import { Readable } from "stream";
 
@@ -102,5 +102,32 @@ export class AWSUtility{
         catch(error){
             console.error("Error: ", error);
         }
-    }
+    };
+
+    // Define async function to upload file to S3
+    async putObject(s3BucketName: string, s3ObjectName: string, localFilePath: string): Promise<void>{
+        // Create a filestream from local filesystem to S3
+        const fileStream = fs.createReadStream(localFilePath);
+
+        // Declare input for command to be sent to S3 Server
+        const input = {
+            Bucket: s3BucketName,
+            Key: s3ObjectName,
+            Body: fileStream
+        }
+
+        // Declare command to be sent to S3 server
+        const command = new PutObjectCommand(input);
+
+        // Execute the command
+        try{
+            // Get response from command sent
+            const response = await this.client.send(command);
+            // Print the response to console
+            console.log(response);
+        }
+        catch(error){
+            console.error("Error: ", error);
+        }
+    };
 }
