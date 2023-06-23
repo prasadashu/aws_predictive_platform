@@ -1,4 +1,4 @@
-import { AWSUtility } from "./aws/aws-util";
+import { S3Manager } from "./aws/s3-manager";
 import { GlueManager } from "./aws/glue-manager";
 import * as dotenv from "dotenv";
 

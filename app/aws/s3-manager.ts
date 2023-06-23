@@ -5,7 +5,7 @@ import { Readable } from "stream";
 /**
  * AWS Utility class to query S3
  */
-export class AWSUtility{
+export class S3Manager{
     // Declare client config variable
     private client: S3Client;
 
