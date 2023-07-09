@@ -4,6 +4,7 @@ archive/*
 # JavaScript files
 app/*.js
 app/util/*.js
+app/aws/*.js
 
 # Logs
 logs

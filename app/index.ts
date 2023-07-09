@@ -1,22 +1,20 @@
-import { AWSUtility } from "./util/aws-util";
+import { S3Manager } from "./aws/s3-manager";
+import { GlueManager } from "./aws/glue-manager";
+import * as dotenv from "dotenv";
 
-// Create the AWSUtility object
-const awsUtility = new AWSUtility("test_access_key_id", "test_secret_access_key_id");
+// Instantiate the 'dotenv' file
+dotenv.config();
 
-// Check command line arguments to invoke S3 AWS utility functions
-if(process.argv[2] === "--listBuckets"){
-    // Call the listBuckets method
-    awsUtility.listBuckets();
-}
-else if(process.argv[2] === "--listObjects"){
-    // Call the listObjects method
-    awsUtility.listObjects(process.argv[3]);
-}
-else if(process.argv[2] === "--getObject"){
-    // Call the getObject method
-    awsUtility.getObject(process.argv[3], process.argv[4]);
-}
-else if(process.argv[2] === "--putObject"){
-    // Call the putObject method
-    awsUtility.putObject(process.argv[3], process.argv[4], process.argv[5]);
-}
+// Create Glue Manager utility object
+const glueManager = new GlueManager(process.env.AWS_ACCESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY, process.env.AWS_REGION);
+
+// Create crawler
+//glueManager.createGlueCrawler("sample-sdk-crawler", "AWS-Sample-S3-Glue-Role", "sample-glue-database")
+// Get list of crawlers
+//glueManager.getGlueCrawlers(1);
+// Get crawler details
+//glueManager.getGlueCrawlerJobDetails("sample-sdk-crawler");
+// Start crawler
+glueManager.startGlueCrawler("sample-sdk-crawler")
+// Delete crawler
+//glueManager.deleteGlueCrawler("sample-sdk-crawler");
