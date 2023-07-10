@@ -6,6 +6,9 @@ app/*.js
 app/util/*.js
 app/aws/*.js
 
+# Zipped Lambda files
+lambda*/*.zip
+
 # Logs
 logs
 *.log

@@ -7,27 +7,33 @@ const s3 = new aws.S3({
     apiVersion: '2006-03-01',
 
     // Pick endpoint URL from Localstack environment variables
-    endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566`, // This two lines are
-    s3ForcePathStyle: true,                                     // only needed for LocalStack. 
+    endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566`,
+    s3ForcePathStyle: true,
 });
 
 // Define handler
 exports.handler = async(event, context) => {
    // Define bucket and key for data
-   const bucket = 'PredictionInputBucket';
-   const key = 'PredictionInputKey';
+   const bucket = 'testbucket';
+   const key = 'sample_file.txt';
+   // Define parameter values to be sent to S3 client
+   // Note: Provide the time in seconds for the pre-signed URL to expire
    const params = {
        Bucket: bucket,
        Key: key,
-       Expires: 3600
+       Expires: 60
    };
+   
+   // Create a S3 Pre-Signed URL
+   // Note: The hostname will point to the IP address of the 'Localstack' container
+   const preSignedUrl = s3.getSignedUrl('putObject', params);
 
-   // Get Signed-URL for S3 Bucket
-   const signed_url = s3.getSignedUrl('putObject', params);
+   // Print pre-signed URL to console
+   console.log(preSignedUrl);
 
-   // Return Signed-URL
+   // Return the pre-signed S3 URL
    return{
     statusCode: 200,
-    body: signed_url
-   };
+    body: preSignedUrl
+   }
 };
