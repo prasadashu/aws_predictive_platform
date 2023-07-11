@@ -36,7 +36,7 @@ zip -q -r function.zip .
 3. Create the `Lambda` function.
 - The index.<HANDLER_NAME> will change depending on the Handler function.
 ```shell
-aws --endpoint-url=http://localhost:4566 lambda create-function --function-name "<SOME_LAMBDA_FUNCTION>" --zip-file fileb://function.zip --handler index.apiTestHandler --runtime nodejs14.x --role arn:aws:iam::000000000000:role/lambda-execution-role
+aws --endpoint-url=http://localhost:4566 lambda create-function --function-name "<SOME_LAMBDA_FUNCTION>" --zip-file fileb://function.zip --handler index.handler --runtime nodejs14.x --role arn:aws:iam::000000000000:role/lambda-execution-role
 ```
 
 ### III. Create REST API
@@ -82,8 +82,9 @@ aws --endpoint-url=http://localhost:4566 apigateway create-deployment --rest-api
 ### IV. Test the REST API
 
 1. Run cURL command on the URL.
+- A valid endpoint to get an S3 pre-signed URL is `pre-signed-s3-url`.
 ```shell
-curl http://localhost:4566/restapis/<SOME_REST_API_ID>/<SOME_DEPLOYMENT_NAME>/_user_request_/<SOME_STRING>
+curl http://localhost:4566/restapis/<SOME_REST_API_ID>/<SOME_DEPLOYMENT_NAME>/_user_request_/<SOME_ENDPOINT>
 ```
 
 2. Or, run the `client_app.sh` file.
