@@ -93,8 +93,9 @@ curl http://localhost:4566/restapis/<SOME_REST_API_ID>/<SOME_DEPLOYMENT_NAME>/_u
 echo "Some random value" >> sample_file.txt
 ```
 - Run the shell file.
+  - Provide REST API ID and deployment name as command line arguments.
 ```shell
-bash client_app.sh
+bash client_app.sh -i=<SOME_REST_API_ID> -d=<SOME_DEPLOYMENT_NAME>
 ```
 
 3. Check S3 bucket for files created.
