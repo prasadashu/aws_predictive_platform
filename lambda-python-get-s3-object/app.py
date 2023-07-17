@@ -2,6 +2,8 @@ import os
 import boto3
 import json
 import pickle
+import io
+import numpy as np
 from sklearn import datasets
 from sklearn import svm
 
@@ -23,10 +25,53 @@ def handler(event, context):
         user_id = record_body["userID"]
 
         # Check if task is to train a model
-        if(task == "train"):
-            print("Task is to train: ", task)
+        if(task == "predict"):
+            # Get CSV object from S3
+            s3_csv_data = s3.get_object(
+                Bucket = "testbucket",
+                Key = "data_" + str(user_id) + ".npy"
+            )
+
+            # Convert CSV data to dataframe
+            with io.BytesIO(s3_csv_data['Body'].read()) as file:
+                s3_csv_dataframe = np.load(file)
+
+            # Get target dataframe
+            target = s3_csv_dataframe[:, 4]
+
+            # Get feature dataframe
+            data = s3_csv_dataframe[:, :4]
+
+            # Instantiate SVC classifier
+            clf = svm.SVC()
+
+            # Train SVC classifier
+            clf.fit(data, target)
+
+            # Store SVC model as a pickle file
+            pickled_model = pickle.dumps(clf)
+
+            # Save model as pickled file to S3
+            s3.put_object(
+                Bucket = "sample-bucket",
+                Key = "pickled_model_" + str(user_id) + ".pickle",
+                Body = pickled_model
+            )
+
+            # Perform prediction
+            predicted_value = clf.predict(data[0:1])[0]
+
+            # Print predicted value
+            print('Prediction on ' + str(data[0:1]) + ' is : ' + str(predicted_value))
+
+            # Return from the function
+            return {
+                'statusCode': 200,
+                'body': json.dumps('Prediction on ' + str(data[0:1]) + ' is : ' + str(predicted_value))
+            }
+            
         # Otherwise, check if task is to predict using model
-        elif(task == "predict"):
+        elif(task == "train"):
             iris = datasets.load_iris()
 
             X, y = iris.data, iris.target

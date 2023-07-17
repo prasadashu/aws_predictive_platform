@@ -34,7 +34,7 @@ exports.handler = async(payload, event, context) => {
         if(payloadQuery == "pre-signed-s3-url"){
             // Define bucket and key for data
             const bucket = 'testbucket';
-            const key = 'sample_file_' + userID + '.txt';
+            const key = 'data_' + userID + '.npy';
             // Define parameter values to be sent to S3 client
             // Note: Provide the time in seconds for the pre-signed URL to expire
             const params = {
