@@ -9,6 +9,10 @@ app/aws/*.js
 # Zipped Lambda files
 lambda*/*.zip
 
+# Python packages
+lambda*/*.zip
+lambda*/package
+
 # Logs
 logs
 *.log
