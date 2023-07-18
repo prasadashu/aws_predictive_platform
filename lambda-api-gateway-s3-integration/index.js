@@ -26,7 +26,7 @@ exports.handler = async(payload, event, context) => {
         // Get the payload information
         const payloadQuery = payload.pathParameters.query;
 
-        // Get User ID from event
+        // Get User ID from REST API POST request payload received from event
         const data = JSON.parse(payload.body);
         const userID = data.userID;
 
@@ -62,12 +62,17 @@ exports.handler = async(payload, event, context) => {
             };
         }
         // Check if new prediction is required
-        else if(payloadQuery == "predict"){
+        else if(payloadQuery == "train"){
             // Define parameters to send message to SQS
+            /**
+             * Note: The endpoint value is being picked and sent as Body to SQS
+             * - The 'task' key in the Body contains the endpoint value
+             * - The 'userID' key is picked from the payload received from REST API
+            */
             const sqsSendMessageParams = {
                 DelaySeconds: 10,
                 MessageBody: JSON.stringify({
-                    task: "predict",
+                    task: payloadQuery,
                     userID: userID
                 }),
                 QueueUrl: `http://${process.env.LOCALSTACK_HOSTNAME}:4566/000000000000/RequestQueue`
