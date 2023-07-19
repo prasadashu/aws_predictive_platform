@@ -6,6 +6,9 @@ bash ./scripts/setup_dependencies.sh
 # Configure AWS CLI
 bash ./scripts/aws_configure.sh
 
+# Spin up localstack docker container
+docker-compose up -d
+
 # Setup S3 Buckets
 bash ./scripts/setup_s3_buckets.sh
 

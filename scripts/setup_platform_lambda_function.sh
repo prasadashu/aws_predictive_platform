@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install npm modules
-npm --prefix ../lambda-api-gateway-s3-integration/ install
+npm --prefix ./lambda-api-gateway-s3-integration/ install
 
 # Zip modules into a package
 zip -q -r ./lambda-api-gateway-s3-integration/function.zip \
@@ -12,7 +12,7 @@ zip -q -r ./lambda-api-gateway-s3-integration/function.zip \
 # Create the Lambda function
 PLATFORM_LAMBDA_ARN=$(aws --endpoint-url=http://localhost:4566 lambda create-function \
     --function-name "lambda-platform-gateway-function" \
-    --zip-file fileb://../lambda-api-gateway-s3-integration/function.zip \
+    --zip-file fileb://./lambda-api-gateway-s3-integration/function.zip \
     --handler index.handler \
     --runtime nodejs14.x \
     --role arn:aws:iam::000000000000:role/lambda-execution-role \
