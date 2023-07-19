@@ -5,6 +5,7 @@ npm --prefix ./lambda-api-gateway-s3-integration/ install
 
 # Zip modules into a package
 zip -q -r ./lambda-api-gateway-s3-integration/function.zip \
+    ./lambda-api-gateway-s3-integration/node_modules \
     ./lambda-api-gateway-s3-integration/package.json \
     ./lambda-api-gateway-s3-integration/package-lock.json \
     ./lambda-api-gateway-s3-integration/index.js
