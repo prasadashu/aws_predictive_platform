@@ -8,14 +8,13 @@ pip install -r ./lambda-python-get-s3-object/requirements.txt \
     --target ./lambda-python-get-s3-object/packages
 
 # Zip modules into a dependency package
-zip -q -r ./lambda-python-get-s3-object/dependency_package.zip \
-    ./lambda-python-get-s3-object/packages/*
+cd ./lambda-python-get-s3-object/packages && zip -q -r ../dependency_package.zip . && cd ..
 
 # Zip handler function to existing library package
-zip dependency_package.zip app.py
+zip dependency_package.zip app.py && cd ..
 
 # Upload the package to S3 bucket
-aws --endpoint-url='http://localhost:4566' s3 cp ./dependency_package.zip s3://sample-bucket/dependency_package.zip
+aws --endpoint-url='http://localhost:4566' s3 cp ./lambda-python-get-s3-object/dependency_package.zip s3://sample-bucket/dependency_package.zip
 
 # Create the Lambda function
 PREDICTIVE_LAMBDA_ARN=$(aws --endpoint-url=http://localhost:4566 lambda create-function \

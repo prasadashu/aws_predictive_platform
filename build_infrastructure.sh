@@ -24,5 +24,8 @@ source ./scripts/setup_platform_gateway_api.sh
 # Setup predictive Lambda function
 source ./scripts/setup_predictive_lambda_function.sh
 
+# Setup event mapping between predictive Lambda and SQS
+bash ./scripts/setup_event_mappings.sh
+
 # Setup predictive API
 source ./scripts/setup_predictive_gateway_api.sh

@@ -4,11 +4,7 @@
 npm --prefix ./lambda-api-gateway-s3-integration/ install
 
 # Zip modules into a package
-zip -q -r ./lambda-api-gateway-s3-integration/function.zip \
-    ./lambda-api-gateway-s3-integration/node_modules \
-    ./lambda-api-gateway-s3-integration/package.json \
-    ./lambda-api-gateway-s3-integration/package-lock.json \
-    ./lambda-api-gateway-s3-integration/index.js
+cd ./lambda-api-gateway-s3-integration && zip -q -r function.zip node_modules/ package.json package-lock.json index.js && cd ..
 	
 # Create the Lambda function
 PLATFORM_LAMBDA_ARN=$(aws --endpoint-url=http://localhost:4566 lambda create-function \
