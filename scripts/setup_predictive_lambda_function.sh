@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Create directory to store python packages
+mkdir ./lambda-python-get-s3-object/packages
+
+# Install modules into packages directory
+pip install -r ./lambda-python-get-s3-object/requirements.txt \
+    --target ./lambda-python-get-s3-object/packages
+
+# Zip modules into a dependency package
+zip -q -r ./lambda-python-get-s3-object/dependency_package.zip \
+    ./lambda-python-get-s3-object/packages/*
+
 # Zip handler function to existing library package
 zip dependency_package.zip app.py
 
