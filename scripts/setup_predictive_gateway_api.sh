@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Print script description
+echo "##############################################################";
+echo "#              SETTING UP PREDICTIVE GATEWAY API             #";
+echo "##############################################################";
+
 # Create a PREDICTIVE REST API
 PREDICTIVE_API_ID=$(aws --endpoint-url=http://localhost:4566 apigateway create-rest-api \
                         --name "plredictive-gateway" \

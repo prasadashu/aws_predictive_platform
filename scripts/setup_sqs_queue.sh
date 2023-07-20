@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Print script description
+echo "##############################################################";
+echo "#                   SETTING UP SQS QUEUE                     #";
+echo "##############################################################";
+
 # Create an SQS queue
 SQS_QUEUE_URL=$(aws --endpoint-url=http://localhost:4566 sqs create-queue \
                     --queue-name RequestQueue \

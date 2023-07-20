@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Print script description
+echo "##############################################################";
+echo "#                  INSTALLING DEPENDENCIES                   #";
+echo "##############################################################";
+
 # Define function to check and install Node.JS
 checkAndInstallNodeJS(){
     # Check if NodeJS is not installed

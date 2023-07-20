@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Print script description
+echo "##############################################################";
+echo "#             SETTING UP PLATFORM LAMBDA FUNCTION            #";
+echo "##############################################################";
+
 # Install npm modules
 npm --prefix ./lambda-api-gateway-s3-integration/ install
 

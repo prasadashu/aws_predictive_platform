@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Print script description
+echo "##############################################################";
+echo "#            SETTING UP PREDICTIVE LAMBDA FUNCTION           #";
+echo "##############################################################";
+
 # Create directory to store python packages
 mkdir ./lambda-python-get-s3-object/packages
 

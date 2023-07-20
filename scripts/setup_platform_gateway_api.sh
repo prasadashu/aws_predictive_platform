@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Print script description
+echo "##############################################################";
+echo "#               SETTING UP PLATFORM GATEWAY API              #";
+echo "##############################################################";
+
 # Create a PLATFORM REST API
 PLATFORM_API_ID=$(aws --endpoint-url=http://localhost:4566 apigateway create-rest-api \
                       --name "platform-gateway" \
