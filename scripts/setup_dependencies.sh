@@ -54,7 +54,9 @@ checkAndInstallAWSCli(){
         echo "Installing AWS CLI...";
 
         # Install AWS CLI
-        apt install -y awscli
+        curl -s "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip";
+        unzip /tmp/awscliv2.zip -d /tmp;
+        sudo /tmp/aws/install;
 
         # Verify if AWS CLI was installed
         if ! aws --version &> /dev/null; then
@@ -90,6 +92,28 @@ checkAndInstallZIP(){
     fi
 }
 
+# Define function to check and install JQ
+checkAndInstallJQ(){
+    # Check if JQ is not installed
+    if ! jq --version &> /dev/null; then
+        echo "JQ is not installed";
+        echo "Installing JQ...";
+
+        # Install JQ
+        apt -y  install jq
+
+        # Verify if JQ was installed
+        if ! jq --version &> /dev/null; then
+            echo "Error while installing JQ";
+        else
+            echo "JQ installed";
+            echo "JW Version: $(jq --version)";
+        fi
+    else
+        echo "JQ Version $(jq --version)";
+    fi
+}
+
 # Check Docker Version
 echo "Docker Version: " $(docker --version);
 
@@ -107,3 +131,6 @@ checkAndInstallAWSCli
 
 # Check ZIP version
 checkAndInstallZIP
+
+# Check JQ version
+checkAndInstallJQ
