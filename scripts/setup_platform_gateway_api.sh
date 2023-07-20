@@ -51,6 +51,10 @@ echo "PLATFORM_API_PARENT_ID: $PLATFORM_API_PARENT_ID"
 echo "PLATFORM_RESOURCE_ID: $PLATFORM_RESOURCE_ID"
 echo "PLATFORM_API_DEPLOYMENT_ID: $PLATFORM_API_DEPLOYMENT_ID"
 
+# Print sample REST API URL
+echo "Pre-Signed S3 REST API endpoint: http://localhost:4566/restapis/$PLATFORM_API_ID/test/_user_request_/pre-signed-s3-url";
+echo "Training REST API endpoint: http://localhost:4566/restapis/$PLATFORM_API_ID/test/_user_request_/train";
+
 # Export variables
 export PLATFORM_API_ID
 export PLATFORM_API_PARENT_ID

@@ -51,6 +51,9 @@ echo "PREDICTIVE_API_PARENT_ID: $PREDICTIVE_API_PARENT_ID"
 echo "PREDICTIVE_RESOURCE_ID: $PREDICTIVE_RESOURCE_ID"
 echo "PREDICTIVE_API_DEPLOYMENT_ID: $PREDICTIVE_API_DEPLOYMENT_ID"
 
+# Print sample REST API URL
+echo "Prediction REST API endpoint: http://localhost:4566/restapis/$PREDICTIVE_API_ID/test/_user_request_/prediction";
+
 # Export variables
 export PREDICTIVE_API_ID
 export PREDICTIVE_API_PARENT_ID
