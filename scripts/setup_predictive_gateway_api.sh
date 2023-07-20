@@ -16,7 +16,7 @@ PREDICTIVE_API_PARENT_ID=$(aws --endpoint-url=http://localhost:4566 apigateway g
 PREDICTIVE_RESOURCE_ID=$(aws --endpoint-url=http://localhost:4566 apigateway create-resource \
                              --rest-api-id "$PREDICTIVE_API_ID" \
                              --parent-id "$PREDICTIVE_API_PARENT_ID" \
-                             --path-part "{query}" \
+                             --path-part "{predict}" \
                              --query "id" \
                              --output text)
 
@@ -25,7 +25,7 @@ aws --endpoint-url=http://localhost:4566 apigateway put-method \
     --rest-api-id "$PREDICTIVE_API_ID" \
     --resource-id "$PREDICTIVE_RESOURCE_ID" \
     --http-method POST \
-    --request-parameters "method.request.path.query=true" \
+    --request-parameters "method.request.path.predict=true" \
     --authorization-type "NONE"
 
 # Attach Lambda function to REST API

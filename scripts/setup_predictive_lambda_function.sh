@@ -21,7 +21,7 @@ PREDICTIVE_LAMBDA_ARN=$(aws --endpoint-url=http://localhost:4566 lambda create-f
                             --function-name "lambda-python-function" \
                             --code S3Bucket=sample-bucket,S3Key=dependency_package.zip \
                             --handler app.handler \
-                            --runtime python3.10 \
+                            --runtime python3.8 \
                             --role arn:aws:iam::000000000000:role/lambda-execution-role \
                             --query "FunctionArn" \
                             --output text)
