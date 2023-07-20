@@ -65,7 +65,7 @@ exports.handler = async(payload, event, context) => {
         else if(payloadQuery == "train"){
             // Define parameters to send message to SQS
             /**
-             * Note: The endpoint value is being picked and sent as Body to SQS
+             * NOTE: The endpoint value is being picked and sent as Body to SQS
              * - The 'task' key in the Body contains the endpoint value
              * - The 'userID' key is picked from the payload received from REST API
             */
@@ -97,6 +97,9 @@ exports.handler = async(payload, event, context) => {
                 console.error("Error while sending SQS message: ", sqsSendMessageError);
             }
         }
+
+        // NOTE: Add 'else if' consitions here for future endpoint expansions
+
         else {
             // Return 404 resource not found
             return{

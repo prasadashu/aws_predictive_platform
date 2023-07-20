@@ -54,6 +54,8 @@ def handler(event, context):
                 'statusCode': 200,
                 'body': json.dumps('Prediction on ' + str(array) + ' is : ' + str(ml_prediction))
             }
+        
+        # NOTE: Add 'elif' conditions here for future endpoint expansions
 
     # Otherwise, check if event contains 'Records' key
     # Note: 'Records' are being received from SQS
