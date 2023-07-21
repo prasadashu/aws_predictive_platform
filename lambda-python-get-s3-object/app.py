@@ -82,10 +82,10 @@ def handler(event, context):
                     s3_csv_dataframe = np.load(file)
 
                 # Get target dataframe
-                target = s3_csv_dataframe[:, len(s3_csv_dataframe)]
+                target = s3_csv_dataframe[:, s3_csv_dataframe.shape[1] - 1]
 
                 # Get feature dataframe
-                data = s3_csv_dataframe[:, :len(s3_csv_dataframe)]
+                data = s3_csv_dataframe[:, :s3_csv_dataframe.shape[1] - 1]
 
                 # Instantiate SVC classifier
                 clf = svm.SVC()
