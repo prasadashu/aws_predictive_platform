@@ -54,6 +54,8 @@ def handler(event, context):
                 'statusCode': 200,
                 'body': json.dumps('Prediction on ' + str(array) + ' is : ' + str(ml_prediction))
             }
+        
+        # NOTE: Add 'elif' conditions here for future endpoint expansions
 
     # Otherwise, check if event contains 'Records' key
     # Note: 'Records' are being received from SQS
@@ -80,10 +82,10 @@ def handler(event, context):
                     s3_csv_dataframe = np.load(file)
 
                 # Get target dataframe
-                target = s3_csv_dataframe[:, 4]
+                target = s3_csv_dataframe[:, s3_csv_dataframe.shape[1] - 1]
 
                 # Get feature dataframe
-                data = s3_csv_dataframe[:, :4]
+                data = s3_csv_dataframe[:, :s3_csv_dataframe.shape[1] - 1]
 
                 # Instantiate SVC classifier
                 clf = svm.SVC()

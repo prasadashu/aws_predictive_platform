@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Print script description
+echo "##############################################################";
+echo "#                  INSTALLING DEPENDENCIES                   #";
+echo "##############################################################";
+
 # Define function to check and install Node.JS
 checkAndInstallNodeJS(){
     # Check if NodeJS is not installed
@@ -54,7 +59,9 @@ checkAndInstallAWSCli(){
         echo "Installing AWS CLI...";
 
         # Install AWS CLI
-        apt install -y awscli
+        curl -s "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip";
+        unzip /tmp/awscliv2.zip -d /tmp;
+        sudo /tmp/aws/install;
 
         # Verify if AWS CLI was installed
         if ! aws --version &> /dev/null; then
@@ -65,6 +72,50 @@ checkAndInstallAWSCli(){
         fi
     else
         echo "AWS CLI Version $(aws --version)";
+    fi
+}
+
+# Define function to check and install ZIP
+checkAndInstallZIP(){
+    # Check if ZIP is not installed
+    if ! aws -v &> /dev/null; then
+        echo "ZIP is not installed";
+        echo "Installing ZIP...";
+
+        # Install ZIP
+        apt install -y zip
+
+        # Verify if ZIP was installed
+        if ! zip -v &> /dev/null; then
+            echo "Error while installing ZIP";
+        else
+            echo "ZIP installed";
+            echo "ZIP Version: $(zip -v)";
+        fi
+    else
+        echo "ZIP Version $(zip -v)";
+    fi
+}
+
+# Define function to check and install JQ
+checkAndInstallJQ(){
+    # Check if JQ is not installed
+    if ! jq --version &> /dev/null; then
+        echo "JQ is not installed";
+        echo "Installing JQ...";
+
+        # Install JQ
+        apt -y  install jq
+
+        # Verify if JQ was installed
+        if ! jq --version &> /dev/null; then
+            echo "Error while installing JQ";
+        else
+            echo "JQ installed";
+            echo "JW Version: $(jq --version)";
+        fi
+    else
+        echo "JQ Version $(jq --version)";
     fi
 }
 
@@ -82,3 +133,9 @@ checkAndInstallTypeScript
 
 # Check AWS CLI version
 checkAndInstallAWSCli
+
+# Check ZIP version
+checkAndInstallZIP
+
+# Check JQ version
+checkAndInstallJQ
