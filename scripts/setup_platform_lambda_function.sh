@@ -13,7 +13,7 @@ cd ./lambda-api-gateway-s3-integration && zip -q -r function.zip node_modules/ p
 	
 # Create the Lambda function
 PLATFORM_LAMBDA_ARN=$(aws --endpoint-url=http://localhost:4566 lambda create-function \
-    --function-name "lambda-platform-gateway-function" \
+    --function-name $PLATFORM_LAMBDA_FUNCTION \
     --zip-file fileb://./lambda-api-gateway-s3-integration/function.zip \
     --handler index.handler \
     --runtime nodejs14.x \

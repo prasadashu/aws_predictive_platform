@@ -7,7 +7,7 @@ echo "##############################################################";
 
 # Create a PLATFORM REST API
 PLATFORM_API_ID=$(aws --endpoint-url=http://localhost:4566 apigateway create-rest-api \
-                      --name "platform-gateway" \
+                      --name $PLATFORM_API_NAME \
                       --query "id" \
                       --output text)                         
                          
@@ -46,7 +46,7 @@ aws --endpoint-url=http://localhost:4566 apigateway put-integration \
 # Create REST API deployment
 PLATFORM_API_DEPLOYMENT_ID=$(aws --endpoint-url=http://localhost:4566 apigateway create-deployment \
                                  --rest-api-id "$PLATFORM_API_ID" \
-                                 --stage-name "test" \
+                                 --stage-name $PLATFORM_API_DEPLOYMENT_NAME \
                                  --query "id" \
                                  --output text)
 
@@ -57,8 +57,8 @@ echo "PLATFORM_RESOURCE_ID: $PLATFORM_RESOURCE_ID"
 echo "PLATFORM_API_DEPLOYMENT_ID: $PLATFORM_API_DEPLOYMENT_ID"
 
 # Print sample REST API URL
-echo "Pre-Signed S3 REST API endpoint: http://localhost:4566/restapis/$PLATFORM_API_ID/test/_user_request_/pre-signed-s3-url";
-echo "Training REST API endpoint: http://localhost:4566/restapis/$PLATFORM_API_ID/test/_user_request_/train";
+echo "Pre-Signed S3 REST API endpoint: http://localhost:4566/restapis/$PLATFORM_API_ID/$PLATFORM_API_DEPLOYMENT_NAME/_user_request_/pre-signed-s3-url";
+echo "Training REST API endpoint: http://localhost:4566/restapis/$PLATFORM_API_ID/$PLATFORM_API_DEPLOYMENT_NAME/_user_request_/train";
 
 # Export variables
 export PLATFORM_API_ID

@@ -23,7 +23,7 @@ aws --endpoint-url='http://localhost:4566' s3 cp ./lambda-python-get-s3-object/d
 
 # Create the Lambda function
 PREDICTIVE_LAMBDA_ARN=$(aws --endpoint-url=http://localhost:4566 lambda create-function \
-                            --function-name "lambda-python-function" \
+                            --function-name $PREDICTIVE_LAMBDA_FUNCTION \
                             --code S3Bucket=sample-bucket,S3Key=dependency_package.zip \
                             --handler app.handler \
                             --runtime python3.8 \

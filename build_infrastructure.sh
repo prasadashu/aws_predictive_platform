@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Setup environment variables
+source ./scripts/setup_env_vars.sh
+
 # Setup dependencies
 bash ./scripts/setup_dependencies.sh
 

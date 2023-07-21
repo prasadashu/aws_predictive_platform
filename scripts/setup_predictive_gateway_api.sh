@@ -7,7 +7,7 @@ echo "##############################################################";
 
 # Create a PREDICTIVE REST API
 PREDICTIVE_API_ID=$(aws --endpoint-url=http://localhost:4566 apigateway create-rest-api \
-                        --name "plredictive-gateway" \
+                        --name $PREDICTIVE_API_NAME \
                         --query "id" \
                         --output text)
 
@@ -46,7 +46,7 @@ aws --endpoint-url=http://localhost:4566 apigateway put-integration \
 # Create REST API deployment
 PREDICTIVE_API_DEPLOYMENT_ID=$(aws --endpoint-url=http://localhost:4566 apigateway create-deployment \
                                  --rest-api-id "$PREDICTIVE_API_ID" \
-                                 --stage-name "test" \
+                                 --stage-name $PREDICTIVE_API_DEPLOYMENT_NAME \
                                  --query "id" \
                                  --output text)
 
@@ -57,7 +57,7 @@ echo "PREDICTIVE_RESOURCE_ID: $PREDICTIVE_RESOURCE_ID"
 echo "PREDICTIVE_API_DEPLOYMENT_ID: $PREDICTIVE_API_DEPLOYMENT_ID"
 
 # Print sample REST API URL
-echo "Prediction REST API endpoint: http://localhost:4566/restapis/$PREDICTIVE_API_ID/test/_user_request_/prediction";
+echo "Prediction REST API endpoint: http://localhost:4566/restapis/$PREDICTIVE_API_ID/$PREDICTIVE_API_DEPLOYMENT_NAME/_user_request_/prediction";
 
 # Export variables
 export PREDICTIVE_API_ID
