@@ -11,7 +11,8 @@ lambda*/*.zip
 
 # Python packages
 lambda*/*.zip
-lambda*/package
+lambda*/lambda*/package
+lambda*/lambda*/dependency_package.zip
 
 # Logs
 logs
