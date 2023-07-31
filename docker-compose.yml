@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   localstack:
-    image: localstack/localstack:latest
+    image: localstack/localstack:2.2.0
     network_mode: bridge
     ports:
       - "127.0.0.1:443:443"              # only required for Pro (LocalStack HTTPS Edge Proxy)
