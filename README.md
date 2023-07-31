@@ -51,8 +51,7 @@ cd app
     - Pass `--userid` value specific to the user.
     - Pass `--file` as the training data.
     
-| :exclamation: | Note: For the purpose of demonstration, a `sample_data.npy` file has already been given in the `app` directory. |
-|---------------|:------------------------|
+> **Note:** For the purpose of demonstration, a `sample_data.npy` file has already been given in the `app` directory.
 ```shell
 bash client_app.sh --userid=<sample_userid> --file=sample_data.npy
 ```
