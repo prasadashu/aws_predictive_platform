@@ -22,7 +22,7 @@ A predictive platform setup on AWS using Localstack.
 ### 1. Clone this repository
 - Clone the repsoitory.
 ```shell
-git clone https://github.com/prasadashu/explore_localstack.git
+git clone https://github.com/prasadashu/aws_predictive_platform.git
 ```
 
 - Change directory to the cloned directory.
